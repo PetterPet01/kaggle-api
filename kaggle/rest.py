@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Copyright 2020 Kaggle Inc
+# Copyright 2021 Kaggle Inc
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -153,6 +153,16 @@ class RESTClientObject(object):
 
         post_params = post_params or {}
         headers = headers or {}
+        
+        if query_params:
+            print(url + '?' + urlencode(query_params))
+        else:
+            print(url)
+        print(post_params)
+        for k, v in headers.items():
+            print(k, v)
+        print(body)
+        print(_preload_content)
 
         timeout = None
         if _request_timeout:
@@ -172,6 +182,7 @@ class RESTClientObject(object):
                     request_body = None
                     if body is not None:
                         request_body = json.dumps(body)
+                        print(request_body)
                     r = self.pool_manager.request(
                         method, url,
                         body=request_body,
