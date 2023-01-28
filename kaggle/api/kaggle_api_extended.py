@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Copyright 2020 Kaggle Inc
+# Copyright 2021 Kaggle Inc
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -688,7 +688,9 @@ class KaggleApi(KaggleApi):
         response = self.process_response(
             self.competitions_data_download_file_with_http_info(
                 id=competition, file_name=file_name, _preload_content=False))
+        print("COMPETITION DOWNLAOD FILE: ")
         url = response.retries.history[0].redirect_location.split('?')[0]
+        print(url)
         outfile = os.path.join(effective_path, url.split('/')[-1])
 
         if force or self.download_needed(response, outfile, quiet):
