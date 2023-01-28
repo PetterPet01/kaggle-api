@@ -1,6 +1,6 @@
 #!/usr/bin/python
 #
-# Copyright 2020 Kaggle Inc
+# Copyright 2021 Kaggle Inc
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -163,6 +163,8 @@ class ApiClient(object):
             post_params=post_params, body=body,
             _preload_content=_preload_content,
             _request_timeout=_request_timeout)
+        print(response_data.getheaders())
+        # print(response_data.data)
 
         self.last_response = response_data
 
@@ -173,7 +175,7 @@ class ApiClient(object):
                 return_data = self.deserialize(response_data, response_type)
             else:
                 return_data = None
-
+        
         if _return_http_data_only:
             return (return_data)
         else:
